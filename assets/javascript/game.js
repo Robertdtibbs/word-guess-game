@@ -15,11 +15,11 @@ var teams = [
     "Inter Milan",
     "Lyon" 
     ];
-// Visual Variables
+// More Variables
 var wins = 0;
-var guesses = 12;
-var lettersUsed = 0;
-var userGuess = event.key;
+var guessesLeft = 12;
+var lettersPressed = [];
+var userGuess = [];
 // 
 
 
@@ -37,25 +37,30 @@ console.log(teams[11]);
 console.log(teams[12]);
 
 // Functions
-// 
+// starts function when key is pressed.
 document.onkeyup = function(event){
+    // key stroke variable.
+    var userGuess = event.key;
 
-var team = teams[Math.floor(Math.random()*teams.length)];
+    //  Randomly chooses a team name from array.
+    var team = teams[Math.floor(Math.random()*teams.length)];
 
-var answerArray = [];
-for (var i= 0; i < team.length; i++) {
-    answerArry[i] = "_";
-}
-
-var remainingLetters = team.length;
-
-for(var t = 0; t < team.length; t++) {
-    if(team[t] === guess) {
-        answerArry[t] = guess;
-        remainingLetters--;
+    var answerArray = [];
+    for (var i= 0; i < team.length; i++) {
+        answerArry[i] = "_";
     }
-}
+
+    var remainingLetters = team.length;
+
+    for(var t = 0; t < team.length; t++) {
+        if(team[t] === guess) {
+            answerArry[t] = guess;
+            remainingLetters--;
+        }
+    }
+    // User Display
+
 }
 
 
-// User Display
+
