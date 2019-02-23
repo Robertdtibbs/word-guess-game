@@ -1,21 +1,35 @@
 // Variable:
 // Array
-var europeTeams = [
+var teams = [
     "Liverpool",
-    "Real Madrid",
+    "RealMadrid",
     "Barcelona",
     "Juventus",
-    "Manchester City",
-    "Paris Saint Germain",
-    "Borussia Dortmund",
-    "AS Roma",
+    "ManchesterCity",
+    "PSG",
+    "Dortmund",
+    "ASRoma",
     "Tottenham",
     "Ajax",
     "Napoli",
-    "Inter Milan",
+    "Milan",
     "Lyon" 
     ];
-// More Variables
+var randomTeams = Math.floor(Math.random()*teams.length);
+var guessesLeft = 12;
+var guessingWord = teams[randomTeams];
+var guessedLetters = guessingWord.length;
+var display = [guessedLetters];
+var win = guessingWord;
+var letters = guessingWord.split('');
+var output = "";
+var userLetter = "";
+var letterUsed = [];
+var correctLetter = 0;
+
+
+
+
 
 // All console logs:
 console.log(teams.length);
@@ -31,51 +45,74 @@ console.log(teams[11]);
 console.log(teams[12]);
 
 
-var guessesLeft = 12;
+// // var userChoiceText = document.getElementById("current-word");
+// var winsText = document.getElementById("total-wins");
+// var computerChoice = document.getElementById("current-word");
+// var guessText = document.getElementById("remaining-guesses");
+// var chosenText = document.getElementById("letters-chosen");
 
-var championsLeague = {    
-    guessingWord = [],
-    guessedLetters = [],
-    wins = 0,
-    teams = europeTeams,
-}
-
-// var userChoiceText = document.getElementById("current-word");
-var winsText = document.getElementById("total-wins");
-var computerChoice = document.getElementById("current-word");
-var guessText = document.getElementById("remaining-guesses");
-var chosenText = document.getElementById("letters-chosen");
 
 // Functions
-// starts function when key is pressed.
-document.onkeyup = function(event){
-    // key stroke variable.
-    var userGuess = event.key;
-
-    //  Randomly chooses a team name from array.
-    var randomTeam = teams[Math.floor(Math.random()*teams.length)];
-
-    userGuess= [];
-    // Sets template of blank spaces for the hangman word the user must guess.
-    for (var i= 0; i < team.length; i++) {
-        userGuess.push("_");
+//  Randomly chooses a team name from array.
+var startUp = function() {
+    for (var i= 0; i < guessingWord.length; i++) {
+        display[i] = "_ ";
+        output = output + display[i];
     }
+    document.getElementById("current-word").innerHTML = output;
+    document.getElementById("remainingGuesses").innerHTML = guessesLeft;
+    output = "";
 
-    if(event.key === "A", "B", "C") {
-        letterGuess(event.key.toLowerCase());
-    }
-
-    function letterGuess(letter) {
-        if (userGuess.indexOf(letter) === -1) {
-            userGuess.push(letter);
-            evaluateLetter(letter);
-        }
-    }
-    // functiont to search for letter in 
 }
 
-// code to push outputs to HTML
-winsText.textContent = wins;
-computerChoice.textContent = "";
-guessText.textContent = remainingGuesses;
-chosenText.textContent = "";
+window.onload = function() {
+    startUp();
+}
+  
+document.onkeyup = function(event){
+
+    output = "";
+    var keyCode = event.keyCode;
+    var userLetter = event.key;
+    var letterMatch = false;
+   
+    if (letterUsed.indexOf(userLetter) === -1) {
+        letterUsed.push(userLetter);
+        for (var c = 0; c < guessingWord.length; c++){
+            if(keyCode >= 65 && keyCode <= 90) {
+                console.log(c)
+                console.log(userLetter)
+                console.log(guessingWord[c])
+                if(userLetter.toLowerCase() === guessingWord[c].toLowerCase()) {
+                    letterMatch = true;
+                    display[c] = userLetter.toLowerCase();
+                    win++;}
+            
+            }
+            output = output + display[c] + " ";
+            document.getElementById("lettersChosen").innerHTML = letterUsed.join(", ");
+        }
+        if(!letterMatch){
+            guessesLeft--;
+        }
+    }
+
+    document.getElementById("current-word").innerHTML = output;
+    output = "";
+    
+
+    if(win > 1)
+    {
+        alert("Champions of Europe");
+    }
+    else if (guessesLeft < 1){
+        alert("Off to Europa League")
+    }
+    else {
+        document.getElementById("remainingGuesses").innerHTML = guessesLeft;
+    }
+
+
+}
+
+
