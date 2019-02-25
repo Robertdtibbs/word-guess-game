@@ -1,1 +1,25 @@
 body{background-image: url(https://images5.alphacoders.com/571/571559.jpg); height: 80% ;background-repeat: none; background-size: cover; margin:0%; padding: 0%; color: whitesmoke};
+
+.container{
+    display: block; 
+    text-align: center; 
+    border-style: dotted; 
+    width: 300px; 
+    margin-left: 237px
+};
+
+#special{
+    display: block; 
+    text-align: center; 
+    width: 300px; 
+    margin-left: 237px; 
+    font-family: fantasy, Arial, Helvetica, sans-serif
+};
+
+#title{
+    display: block; 
+    text-align: center; 
+    width: 300px; 
+    font-family: Arial, Helvetica, sans-serif; 
+    margin-left: 237px
+};

@@ -20,36 +20,18 @@ var guessesLeft = 12;
 var guessingWord = teams[randomTeams];
 var guessedLetters = guessingWord.length;
 var display = [guessedLetters];
-var win = guessingWord;
+var win = guessedLetters;
 var letters = guessingWord.split('');
 var output = "";
 var userLetter = "";
 var letterUsed = [];
 var correctLetter = 0;
+var userWins = 0;
 
-
-
-
-
-// All console logs:
 console.log(teams.length);
 console.log(teams[0]);
-console.log(teams[1]);
-console.log(teams[2]);
-console.log(teams[3]);
-console.log(teams[4]);
-console.log(teams[5]);
-console.log(teams[8]);
-console.log(teams[10]);
 console.log(teams[11]);
 console.log(teams[12]);
-
-
-// // var userChoiceText = document.getElementById("current-word");
-// var winsText = document.getElementById("total-wins");
-// var computerChoice = document.getElementById("current-word");
-// var guessText = document.getElementById("remaining-guesses");
-// var chosenText = document.getElementById("letters-chosen");
 
 
 // Functions
@@ -62,6 +44,7 @@ var startUp = function() {
     document.getElementById("current-word").innerHTML = output;
     document.getElementById("remainingGuesses").innerHTML = guessesLeft;
     output = "";
+    document.getElementById("total-wins").innerHTML = "Wins: " + userWins;
 
 }
 
@@ -85,34 +68,35 @@ document.onkeyup = function(event){
                 console.log(guessingWord[c])
                 if(userLetter.toLowerCase() === guessingWord[c].toLowerCase()) {
                     letterMatch = true;
-                    display[c] = userLetter.toLowerCase();
-                    win++;}
-            
+                    display[c] = userLetter.toUpperCase();
+                    win++;
+                }
+                    
             }
             output = output + display[c] + " ";
             document.getElementById("lettersChosen").innerHTML = letterUsed.join(", ");
         }
         if(!letterMatch){
             guessesLeft--;
-        }
+        } 
     }
 
     document.getElementById("current-word").innerHTML = output;
     output = "";
     
 
-    if(win > 1)
+    if(win < 1 && guessedLeft > 0)
     {
         alert("Champions of Europe");
+        userWins++;
     }
     else if (guessesLeft < 1){
-        alert("Off to Europa League")
+        alert("Off to Europa League");
+        starup();
     }
     else {
         document.getElementById("remainingGuesses").innerHTML = guessesLeft;
     }
-
-
 }
 
 
