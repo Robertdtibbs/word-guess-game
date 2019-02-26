@@ -20,13 +20,13 @@ var guessesLeft = 12;
 var guessingWord = teams[randomTeams];
 var guessedLetters = guessingWord.length;
 var display = [guessedLetters];
-var win = guessedLetters;
+var win = 0;
 var letters = guessingWord.split('');
 var output = "";
 var userLetter = "";
 var letterUsed = [];
 var correctLetter = 0;
-var userWins = 0;
+// var userWins = 0;
 
 console.log(teams.length);
 console.log(teams[0]);
@@ -44,7 +44,7 @@ var startUp = function() {
     document.getElementById("current-word").innerHTML = output;
     document.getElementById("remainingGuesses").innerHTML = guessesLeft;
     output = "";
-    document.getElementById("total-wins").innerHTML = "Wins: " + userWins;
+    document.getElementById("total-wins").innerHTML = "Wins: " + win;
 
 }
 
@@ -70,6 +70,7 @@ document.onkeyup = function(event){
                     letterMatch = true;
                     display[c] = userLetter.toUpperCase();
                     win++;
+                    console.log(win + "win") 
                 }
                     
             }
@@ -81,18 +82,42 @@ document.onkeyup = function(event){
         } 
     }
 
+    // if(keyCode >= 65 && keyCode <= 90) {
+    //     if (letterUsed.indexOf(userLetter) === -1) {
+    //         letterUsed.push(userLetter);
+    //         for (var c = 0; c < guessingWord.length; c++){
+           
+    //             console.log(c)
+    //             console.log(userLetter)
+    //             console.log(guessingWord[c])
+    //             if(userLetter.toLowerCase() === guessingWord[c].toLowerCase()) {
+    //                 letterMatch = true;
+    //                 display[c] = userLetter.toUpperCase();
+    //                 win++;
+    //                 console.log(win + "win") 
+    //             }
+                    
+    //         }
+    //         output = output + display[c] + " ";
+    //         document.getElementById("lettersChosen").innerHTML = letterUsed.join(", ");
+    //     }
+    //     if(!letterMatch){
+    //         guessesLeft--;
+    //     } 
+    // }
+
+
     document.getElementById("current-word").innerHTML = output;
     output = "";
     
 
-    if(win < 1 && guessedLeft > 0)
+    if(win.length == guessingWord.length)
     {
         alert("Champions of Europe");
-        userWins++;
+        win++;
     }
     else if (guessesLeft < 1){
         alert("Off to Europa League");
-        starup();
     }
     else {
         document.getElementById("remainingGuesses").innerHTML = guessesLeft;
