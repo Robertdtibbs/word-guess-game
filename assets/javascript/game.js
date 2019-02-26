@@ -26,7 +26,7 @@ var output = "";
 var userLetter = "";
 var letterUsed = [];
 var correctLetter = 0;
-// var userWins = 0;
+var userWins = 0;
 
 console.log(teams.length);
 console.log(teams[0]);
@@ -44,7 +44,7 @@ var startUp = function() {
     document.getElementById("current-word").innerHTML = output;
     document.getElementById("remainingGuesses").innerHTML = guessesLeft;
     output = "";
-    document.getElementById("total-wins").innerHTML = "Wins: " + win;
+    document.getElementById("total-wins").innerHTML = "Wins: " + userWins;
 
 }
 
@@ -63,14 +63,11 @@ document.onkeyup = function(event){
         letterUsed.push(userLetter);
         for (var c = 0; c < guessingWord.length; c++){
             if(keyCode >= 65 && keyCode <= 90) {
-                console.log(c)
-                console.log(userLetter)
-                console.log(guessingWord[c])
                 if(userLetter.toLowerCase() === guessingWord[c].toLowerCase()) {
                     letterMatch = true;
                     display[c] = userLetter.toUpperCase();
                     win++;
-                    console.log(win + "win") 
+                    console.log("win", win) 
                 }
                     
             }
@@ -111,10 +108,12 @@ document.onkeyup = function(event){
     output = "";
     
 
-    if(win.length == guessingWord.length)
+    console.log(win, guessingWord.length)
+    if(win === guessingWord.length)
     {
+        ++userWins;
         alert("Champions of Europe");
-        win++;
+        startUp()
     }
     else if (guessesLeft < 1){
         alert("Off to Europa League");
