@@ -11,28 +11,35 @@
     
 </head>
 <body>
-    <div>
-        <header><h3 id = "title">Word Guess!</h3></header>
-        <h3 id = "special">Champions League Edition</h3>
+    <div class = "m-4">
+        <header class="mx-auto" style="width: 300px" mt="50px;" ><h1>Word Guess!</h1></header>
+        <div class = "m-3">
+            <h3 class="mx-auto" style="width: 400px;">Champions League Edition</h3>
+        </div>
     </div>
-    <div class ="container">
-        <div><h4>Press Any Letter to Start</h4></div>
-        <div>
-            <p id= "total-wins"></p>
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-sm-4"></div>
+            <div class = "col-sm-6">
+                <div><h4>Press Any Letter to Start</h4></div>
+                <div>
+                    <p id= "total-wins"></p>
+                </div>
+                <div>
+                    <p>Current Word:</p>
+                    <p id = "current-word"></p>
+                </div>
+                <div>
+                    <p>Number of Remaining Guess:</p>
+                    <p id= "remainingGuesses"> </p>
+                </div>
+                <div>
+                    <p>Letters Already Guessed:</p>
+                    <p id = "lettersChosen"></p>
+                </div>
+            </div>
+            <div class="col-sm-3"></div>
         </div>
-        <div>
-            <p>Current Word:</p>
-            <p id = "current-word"></p>
-        </div>
-        <div>
-            <p>Number of Remaining Guess:</p>
-            <p id= "remainingGuesses"> </p>
-        </div>
-        <div>
-            <p>Letters Already Guessed:</p>
-            <p id = "lettersChosen"></p>
-        </div>
-
     </div>
 </body>
 </html>
